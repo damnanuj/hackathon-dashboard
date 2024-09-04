@@ -1,19 +1,26 @@
 import "./CreateForm.scss";
-// import axios from 'axios'; 
+import axios from 'axios'; 
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import upload from "../../assets/icons/bxs_cloud-upload.svg";
 import GreenBtn from "../Common/GreenButton/GreenBtn";
 import {  DatePicker, Form, Input, Select, Upload, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
+import { endpoint } from "../HackathonCards/ChallangesCards";
 
 const CreateForm = () => {
+  const navigate=useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [fileList, setFileList] = useState([]);
-  
+  const logFormData = (formData) => {
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
+    }
+  };
 
   const onFinishSubmit = async (ChallangeFormData) => {
     setIsLoading(true);
-    
+    console.log(ChallangeFormData);
     try {
       const formData = new FormData();
       formData.append("challangeName", ChallangeFormData.challangeName);
@@ -21,22 +28,28 @@ const CreateForm = () => {
       formData.append("endDate", ChallangeFormData.endDate.format("YYYY-MM-DD"));
       formData.append("description", ChallangeFormData.description);
       formData.append("difficulty", ChallangeFormData.difficulty);
-    
+  
+      // Log FormData content
+      logFormData(formData);
+  
       if (fileList.length > 0) {
         formData.append("image", fileList[0].originFileObj);
       }
+  
+      const response = await axios.post(`${endpoint}/create-challenge`, 
+      
+       formData
+      );
     
-      const response = await fetch("http://localhost:8000/create-challenge", {
-        method: "POST",
-        body: formData,
-      });
-    
-      if (response.ok) {
+      if (response.data) {
         message.success("Challenge Created Successfully");
+        console.log(response.data);
+        navigate("/")
         // Optionally, reset the form here
       } else {
         message.error("Failed to create challenge. Please try again.");
       }
+  
     } catch (error) {
       console.error("Error submitting form:", error);
       message.error("An error occurred. Please try again.");
@@ -68,7 +81,7 @@ const CreateForm = () => {
       >
         <Form.Item
           label="Challenge Name"
-          name="challengeName"
+          name="challangeName"
           rules={[
             {
               required: true,
@@ -119,7 +132,7 @@ const CreateForm = () => {
 
         <Form.Item
           label="Image"
-           name="imageUrl"
+           name="image"
           valuePropName="fileList"
           getValueFromEvent={(e) => e && e.fileList}
           rules={[
@@ -140,7 +153,7 @@ const CreateForm = () => {
             fileList={fileList}
             onChange={handleFileChange}
             beforeUpload={() => false} 
-           
+            name="image"
           >
             {fileList.length < 1 && (
               <button
