@@ -1,0 +1,69 @@
+@import "../../colors.scss";
+
+.challangesCard_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // Creates 3 equal-width columns
+  gap: 20px;
+  justify-content: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  // Ensure the container takes the full width of its parent
+  .card {
+    padding-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    text-align: center;
+    transition: transform 0.2s;
+    .banner {
+      width: 100%;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .card-status {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 2px 20px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: bold;
+      color: $black-color;
+      &.upcoming {
+        background-color: rgba($yellow-color, 0.4);
+        
+      }
+  
+      &.past {
+        background-color: rgba($red-color, 0.4);
+      }
+      &.active {
+        background-color: rgba($green-color, 0.4);
+        color: $green-color;
+      }
+    }
+    
+
+    .card-title {
+      font-size: 18px;
+      margin: 20px 0 10px;
+      font-weight: bold;
+      
+      padding:0  20px;
+    }
+
+    .card-timer {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+//   .card:hover {
+//     transform: translateY(-10px);
+//   }

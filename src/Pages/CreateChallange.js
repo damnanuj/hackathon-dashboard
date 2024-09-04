@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from '../Components/Header/Header'
-import CreateForm from '../ChallangeCreateForm/CreateForm'
+import Header from '../Components/Common/Header/Header'
+import CreateForm from '../Components/ChallangeCreateForm/CreateForm'
 
 const CreateChallange = () => {
   return (

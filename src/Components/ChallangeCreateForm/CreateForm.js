@@ -1,35 +1,51 @@
 import "./CreateForm.scss";
+// import axios from 'axios'; 
 import React, { useState } from "react";
-import upload from "../assets/icons/bxs_cloud-upload.svg";
-import GreenBtn from "../Components/Common/GreenButton/GreenBtn";
+import upload from "../../assets/icons/bxs_cloud-upload.svg";
+import GreenBtn from "../Common/GreenButton/GreenBtn";
 import {  DatePicker, Form, Input, Select, Upload, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
 
 const CreateForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [fileList, setFileList] = useState([]);
+  
 
-  const onFinishSignup = async (signupFormData) => {
+  const onFinishSubmit = async (ChallangeFormData) => {
     setIsLoading(true);
-
-    const formData = new FormData();
-    formData.append("challangeName", signupFormData.challangeName);
-    formData.append("startDate", signupFormData.startDate.format("YYYY-MM-DD"));
-    formData.append("endDate", signupFormData.endDate.format("YYYY-MM-DD"));
-    formData.append("description", signupFormData.description);
-    formData.append("difficulty", signupFormData.difficulty);
-
-    if (fileList.length > 0) {
-      formData.append("image", fileList[0].originFileObj);
-    }
-
-    setTimeout(() => {
-      console.log("Form Data Submitted: ", signupFormData);
-      console.log("File Data Submitted: ", fileList);
-      message.success("Challenge Created Successfully");
+    
+    try {
+      const formData = new FormData();
+      formData.append("challangeName", ChallangeFormData.challangeName);
+      formData.append("startDate", ChallangeFormData.startDate.format("YYYY-MM-DD"));
+      formData.append("endDate", ChallangeFormData.endDate.format("YYYY-MM-DD"));
+      formData.append("description", ChallangeFormData.description);
+      formData.append("difficulty", ChallangeFormData.difficulty);
+    
+      if (fileList.length > 0) {
+        formData.append("image", fileList[0].originFileObj);
+      }
+    
+      const response = await fetch("http://localhost:8000/create-challenge", {
+        method: "POST",
+        body: formData,
+      });
+    
+      if (response.ok) {
+        message.success("Challenge Created Successfully");
+        // Optionally, reset the form here
+      } else {
+        message.error("Failed to create challenge. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      message.error("An error occurred. Please try again.");
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
+  
+  
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -44,7 +60,7 @@ const CreateForm = () => {
       </div>
 
       <Form
-        onFinish={onFinishSignup}
+        onFinish={onFinishSubmit}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
         layout="vertical"
@@ -52,7 +68,7 @@ const CreateForm = () => {
       >
         <Form.Item
           label="Challenge Name"
-          name="challangeName"
+          name="challengeName"
           rules={[
             {
               required: true,
@@ -97,8 +113,13 @@ const CreateForm = () => {
           <TextArea rows={4} />
         </Form.Item>
 
+
+
+
+
         <Form.Item
           label="Image"
+           name="imageUrl"
           valuePropName="fileList"
           getValueFromEvent={(e) => e && e.fileList}
           rules={[
@@ -118,7 +139,8 @@ const CreateForm = () => {
             listType="picture-card"
             fileList={fileList}
             onChange={handleFileChange}
-            beforeUpload={() => false} // Prevent automatic upload
+            beforeUpload={() => false} 
+           
           >
             {fileList.length < 1 && (
               <button
@@ -142,6 +164,12 @@ const CreateForm = () => {
             )}
           </Upload>
         </Form.Item>
+
+
+
+
+
+
 
         <Form.Item
           label="Difficulty"
@@ -175,3 +203,21 @@ const CreateForm = () => {
 };
 
 export default CreateForm;
+
+
+
+
+// const storage = multer.diskStorage({
+//       destination: function (req, file, cb) {
+//         cb(null, "uploads");
+//       },
+//       filename: function (req, file, cb) {
+//         cb(null, file.fieldname + "-" + Date.now() + ".jpg");
+//       },
+//     });
+//     const upload = multer({ storage: storage }).single("user_photo");
+//   app.post("/upload", upload, (req, res) => {
+//       res.send("Upload success");
+//       const imageName = req.file.filename;
+//       console.log(imageName);
+//     });
