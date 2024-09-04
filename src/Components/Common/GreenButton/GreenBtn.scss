@@ -1,0 +1,19 @@
+@import "../../../colors.scss";
+
+.greenBtnContainer{
+        background-color: $green-color;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        font-size: 17px;
+        font-weight: 400;
+        min-width: 200px;
+       
+        color: $white-background-color;
+        cursor: pointer;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+}

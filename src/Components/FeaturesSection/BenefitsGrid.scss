@@ -1,0 +1,52 @@
+@import "../../colors.scss";
+.BenifitsContainer {
+  background-color: $white-background-color;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  h2 {
+    text-align: center;
+    margin-bottom: 4rem;
+    span{
+       color: $green-color;
+    }
+  }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    .benefit-item {
+      background-color: $gray-card-color;
+      padding: 4rem 2rem;
+      border-radius: 12px;
+      text-align: left;
+
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+
+      gap: 1rem;
+
+      //   &:hover {
+      //     transform: translateY(-5px);
+      //   }
+
+      .benefit-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .benefit-title {
+        font-size: 18px;
+
+        color: $black-color;
+      }
+
+      .benefit-description {
+        font-size: 14px;
+        color: rgba($black-color , 0.5);
+        font-weight: 500;
+      }
+    }
+  }
+}

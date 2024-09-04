@@ -1,0 +1,31 @@
+@import "../../colors.scss";
+
+.dataCount_container {
+  width: 100%;
+  height: 200px;
+  background-color: $blue-card-background;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+
+  .groups_content {
+    flex-grow: 1;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 1rem;
+    color: $white-background-color;
+    line-height: 1.6rem;
+    h2 {
+      font-weight: 600;
+    }
+    &:nth-child(2),
+    &:nth-child(3) {
+      border-left: 1px solid $white-background-color;
+      
+    }
+  }
+}
