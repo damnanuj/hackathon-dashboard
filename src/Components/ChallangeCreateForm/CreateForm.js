@@ -6,18 +6,20 @@ import upload from "../../assets/icons/bxs_cloud-upload.svg";
 import GreenBtn from "../Common/GreenButton/GreenBtn";
 import {  DatePicker, Form, Input, Select, Upload, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import { endpoint } from "../HackathonCards/ChallangesCards";
+import { baseURL } from "../HackathonCards/ChallangesCards";
 
 const CreateForm = () => {
   const navigate=useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [fileList, setFileList] = useState([]);
+  
   const logFormData = (formData) => {
     for (const [key, value] of formData.entries()) {
       console.log(`${key}:`, value);
     }
   };
 
+  
   const onFinishSubmit = async (ChallangeFormData) => {
     setIsLoading(true);
     console.log(ChallangeFormData);
@@ -36,7 +38,7 @@ const CreateForm = () => {
         formData.append("image", fileList[0].originFileObj);
       }
   
-      const response = await axios.post(`${endpoint}/create-challenge`, 
+      const response = await axios.post(`${baseURL}/create-challenge`, 
       
        formData
       );
@@ -45,7 +47,7 @@ const CreateForm = () => {
         message.success("Challenge Created Successfully");
         console.log(response.data);
         navigate("/")
-        // Optionally, reset the form here
+        // reset the form here
       } else {
         message.error("Failed to create challenge. Please try again.");
       }
@@ -78,6 +80,9 @@ const CreateForm = () => {
         autoComplete="off"
         layout="vertical"
         className="form_container uni_padding"
+        initialValues={{
+          difficulty: "Easy", // Set initial value for the Select field
+        }}
       >
         <Form.Item
           label="Challenge Name"
@@ -138,7 +143,7 @@ const CreateForm = () => {
           rules={[
             {
               required: true,
-              message: "Please upload an image",
+             
             },
             {
               validator: (_, value) =>
@@ -192,7 +197,7 @@ const CreateForm = () => {
           ]}
         >
           <Select
-            defaultValue="Easy"
+            
             options={[
               { value: "Easy", label: "Easy" },
               { value: "Medium", label: "Medium" },
@@ -206,8 +211,8 @@ const CreateForm = () => {
             htmlType="submit"
             icon={false}
             text={"Create Challenge"}
-            loading={isLoading}
-            block
+            loading={isLoading.toString()}
+            
           />
         </Form.Item>
       </Form>
