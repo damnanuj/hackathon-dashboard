@@ -48,7 +48,7 @@ const FilterSearchComponent = () => {
       <div className="searchBarFilterFlex uni_padding">
         <Input placeholder="Search" className="searchInput"
          prefix={<SearchOutlined />} />
-        <Dropdown menu={menu} trigger={["click"]}>
+        <Dropdown overlay={menu} trigger={["click"]}>
           <Button
             type="primary"
             

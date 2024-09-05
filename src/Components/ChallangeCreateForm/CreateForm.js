@@ -1,57 +1,61 @@
 import "./CreateForm.scss";
-import axios from 'axios'; 
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import upload from "../../assets/icons/bxs_cloud-upload.svg";
 import GreenBtn from "../Common/GreenButton/GreenBtn";
-import {  DatePicker, Form, Input, Select, Upload, message } from "antd";
+import { DatePicker, Form, Input, Select, Upload, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { baseURL } from "../HackathonCards/ChallangesCards";
 
 const CreateForm = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [fileList, setFileList] = useState([]);
-  
   const logFormData = (formData) => {
     for (const [key, value] of formData.entries()) {
       console.log(`${key}:`, value);
     }
   };
 
-  
   const onFinishSubmit = async (ChallangeFormData) => {
     setIsLoading(true);
     console.log(ChallangeFormData);
     try {
       const formData = new FormData();
       formData.append("challangeName", ChallangeFormData.challangeName);
-      formData.append("startDate", ChallangeFormData.startDate.format("YYYY-MM-DD"));
-      formData.append("endDate", ChallangeFormData.endDate.format("YYYY-MM-DD"));
+      formData.append(
+        "startDate",
+        ChallangeFormData.startDate.format("YYYY-MM-DD")
+      );
+      formData.append(
+        "endDate",
+        ChallangeFormData.endDate.format("YYYY-MM-DD")
+      );
       formData.append("description", ChallangeFormData.description);
       formData.append("difficulty", ChallangeFormData.difficulty);
-  
+
       // Log FormData content
       logFormData(formData);
-  
+
       if (fileList.length > 0) {
         formData.append("image", fileList[0].originFileObj);
       }
-  
-      const response = await axios.post(`${baseURL}/create-challenge`, 
-      
-       formData
+
+      const response = await axios.post(
+        `${baseURL}/create-challenge`,
+
+        formData
       );
-    
+
       if (response.data) {
         message.success("Challenge Created Successfully");
         console.log(response.data);
-        navigate("/")
-        // reset the form here
+        navigate("/");
+        // Optionally, reset the form here
       } else {
         message.error("Failed to create challenge. Please try again.");
       }
-  
     } catch (error) {
       console.error("Error submitting form:", error);
       message.error("An error occurred. Please try again.");
@@ -59,8 +63,6 @@ const CreateForm = () => {
       setIsLoading(false);
     }
   };
-  
-  
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -81,7 +83,7 @@ const CreateForm = () => {
         layout="vertical"
         className="form_container uni_padding"
         initialValues={{
-          difficulty: "Easy", // Set initial value for the Select field
+          difficulty: "Easy",
         }}
       >
         <Form.Item
@@ -131,19 +133,15 @@ const CreateForm = () => {
           <TextArea rows={4} />
         </Form.Item>
 
-
-
-
-
         <Form.Item
           label="Image"
-           name="image"
+          name="image"
           valuePropName="fileList"
           getValueFromEvent={(e) => e && e.fileList}
           rules={[
             {
               required: true,
-             
+              message: "Please upload an image",
             },
             {
               validator: (_, value) =>
@@ -157,7 +155,7 @@ const CreateForm = () => {
             listType="picture-card"
             fileList={fileList}
             onChange={handleFileChange}
-            beforeUpload={() => false} 
+            beforeUpload={() => false}
             name="image"
           >
             {fileList.length < 1 && (
@@ -183,12 +181,6 @@ const CreateForm = () => {
           </Upload>
         </Form.Item>
 
-
-
-
-
-
-
         <Form.Item
           label="Difficulty"
           name="difficulty"
@@ -197,7 +189,7 @@ const CreateForm = () => {
           ]}
         >
           <Select
-            
+           
             options={[
               { value: "Easy", label: "Easy" },
               { value: "Medium", label: "Medium" },
@@ -211,8 +203,8 @@ const CreateForm = () => {
             htmlType="submit"
             icon={false}
             text={"Create Challenge"}
-            loading={isLoading.toString()}
-            
+            loading={isLoading}
+            block
           />
         </Form.Item>
       </Form>
@@ -221,9 +213,6 @@ const CreateForm = () => {
 };
 
 export default CreateForm;
-
-
-
 
 // const storage = multer.diskStorage({
 //       destination: function (req, file, cb) {

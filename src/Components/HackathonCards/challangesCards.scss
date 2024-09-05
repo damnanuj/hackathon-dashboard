@@ -9,7 +9,7 @@
   padding-bottom: 3rem;
   // Ensure the container takes the full width of its parent
   .card {
-    height: 450px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,7 +41,7 @@
       flex-direction: column;
       align-items: center;
       
-      gap: 0.5rem;
+      gap: 0.4rem;
       height: 60%;
       width: 100%;
       .card-status {
@@ -56,7 +56,7 @@
           
         }
     
-        &.past {
+        &.ended {
           background-color: rgba($red-color, 0.4);
         }
         &.active {
@@ -75,9 +75,14 @@
       }
   
       .card-timer {
-        font-size: 14px;
-        color: #666;
+        font-size: 18px;
+        color: #4b4b4b;
         margin-bottom: 20px;
+        font-weight: 600;
+        span{
+          font-size: 15px;
+          font-weight: 500;
+        }
       }
     }
     
