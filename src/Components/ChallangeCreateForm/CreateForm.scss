@@ -9,7 +9,7 @@
 
 .form_container {
   background-color: $white-background-color;
-
+  
   
 
   padding-top: 2rem;
@@ -25,6 +25,7 @@
   }
 
   .ant-form-item {
+    
     width: 40%;
     margin-bottom: 25px;
     .ant-form-item-label {
@@ -64,14 +65,17 @@
 }
 
 @media (max-width: "600px") {
-  .signupFormContainer {
-    padding: 1rem 0;
-
-    .form {
-      padding: 0 1rem 1rem 1rem;
-    }
-    .spaceHeading {
-      font-size: 60px !important;
-    }
+  .challange_details{
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .form_container{
+    padding: 2rem;
+  }
+  .ant-form-item {
+    
+    width: 100% !important;
+   
   }
 }
