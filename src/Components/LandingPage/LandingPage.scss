@@ -1,82 +1,101 @@
 @import "../../colors.scss";
 
 .landingPage_container {
-
   // background-color: red;
   height: calc(100vh - 70px);
-display: flex;
-align-items: center;
-  
-  
-    padding: 3rem 4rem;
-   
+  display: flex;
+  align-items: center;
+
+  padding: 3rem 4rem;
+
+  justify-content: center;
+  width: 100%;
+
+  .left_side {
+    color: $white-background-color;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 4rem 2rem 3rem 9rem;
     justify-content: center;
-    width: 100%;
+
+    width: 65%;
    
-    
-    .left_side {
+    // background-color: blue;
+
+    .yellow_bar {
+      width: 9px;
+      height: 7.5rem;
+      background-color: $yellow-color;
+      position: absolute;
+      top: 0px;
+      left: -50px;
+    }
+    .heading {
+      position: relative;
+      font-size: 46px;
+      line-height: 3.8rem;
+      font-weight: 600;
+      // border: 1px solid red;
+    }
+    .para {
+      width: 85%;
+      font-size: 18px;
+      font-weight: 400;
+    }
+    .create_btn {
+      background-color: $white-background-color;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      color: $main-background-color;
+      cursor: pointer;
+    }
+  }
+  .right_side {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+  }
+}
+
+
+@media (max-width : 600px){
+  .landingPage_container {
+    height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+   
+    padding: 1rem;
+   
+    width: 100%;
+    .left_side{
+      height: 70%;
       color: $white-background-color;
       display: flex;
-      height: 100%;
+   
       flex-direction: column;
       align-items: flex-start;
       gap: 2rem;
-     padding: 4rem 2rem 3rem 9rem;
-     justify-content: center;
-      
-      width: 65%;
-      height: 100%;
-      // background-color: blue;
-      
-      .yellow_bar {
-        width: 9px;
-        height: 7.5rem;
-        background-color: $yellow-color;
-        position: absolute;
-        top: 0px;
-        left: -50px;
-      }
-      .heading {
-        position: relative;
-        font-size: 46px;
-        line-height: 3.8rem;
-        font-weight: 600;
-        // border: 1px solid red;
-      }
-      .para {
-       width: 85%;
-        font-size: 18px;
-        font-weight: 400;
-      }
-      .create_btn {
-        background-color: $white-background-color;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 10px;
-        font-size: 18px;
-        font-weight: 600;
-        color: $main-background-color;
-        cursor: pointer;
-      }
-    }
-    .right_side {
-      width: 35%;
-      height: 100%;
-      display: flex;
-      align-items: center;
+      padding: 1rem;
       justify-content: center;
-      
-     
-      overflow: hidden;
-      
-     
-      img{
+      border: 1px solid red;
+      width: 100%;
+      .heading{
        
-      
-        
+        position: initial;
+        font-size: 30px;
+       line-height: 2rem;
+        font-weight: 600;
       }
-      
     }
-  
-  
+}
 }
