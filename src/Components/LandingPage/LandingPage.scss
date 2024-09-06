@@ -72,30 +72,36 @@
   .landingPage_container {
     height: calc(100vh - 70px);
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
    
-    padding: 1rem;
+    padding: 2rem 1rem;
    
     width: 100%;
     .left_side{
       height: 70%;
       color: $white-background-color;
       display: flex;
-   
+  
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       gap: 2rem;
-      padding: 1rem;
-      justify-content: center;
+      padding: 1rem 0;
+      justify-content: flex-start;
     
       width: 100%;
       .heading{
-       
+       text-align: center;
         position: initial;
         font-size: 30px;
        line-height: 2rem;
         font-weight: 600;
       }
+      .para{
+        text-align: center;
+      }
+    }
+    .right_side{
+      height: 50%;
     }
 }
 }

@@ -61,3 +61,24 @@
     color: $white-background-color;
   }
 }
+
+
+@media (max-width : 600px){
+  .searchFilter_Container{
+    height: 220px;
+    gap: 1.5rem;
+    h1{
+      margin-bottom: 0;
+    }
+    .chipContainer {
+      padding: 0 1rem ;
+      flex-wrap: wrap;
+    }
+  }
+  .searchBarFilterFlex {
+    padding: 0 1rem ;
+    button{
+      padding: 0 15px;
+    }
+  }
+}
