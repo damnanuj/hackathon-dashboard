@@ -51,3 +51,16 @@
     }
   }
 }
+
+
+
+@media (max-width : 600px){
+  .BenifitsContainer{
+    padding: 2rem;
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+  }
+}
+}

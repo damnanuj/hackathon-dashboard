@@ -89,6 +89,9 @@
   }
 }
 
-//   .card:hover {
-//     transform: translateY(-10px);
-//   }
+@media(max-width: 600px){
+  .challangesCard_container {
+    padding: 2rem;
+    grid-template-columns: 1fr;
+  }
+}
