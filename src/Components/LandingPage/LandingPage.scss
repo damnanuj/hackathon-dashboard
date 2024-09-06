@@ -70,18 +70,18 @@
 
 @media (max-width : 600px){
   .landingPage_container {
-    height: calc(100vh - 70px);
+    height: fit-content;
     display: flex;
     flex-direction: column-reverse;
-   
-    padding: 2rem 1rem;
-   
+  
+    padding:0 1rem 1rem 1rem;
+   justify-content: flex-start;
     width: 100%;
     .left_side{
-      
+      height: 40%;
       color: $white-background-color;
       display: flex;
-  
+    
       flex-direction: column;
       align-items: center;
       gap: 2rem;
@@ -101,7 +101,12 @@
       }
     }
     .right_side{
-      
+      width: 100%;
+     
+      height: fit-content;
+      img{
+        width: 200px;
+      }
     }
 }
 }

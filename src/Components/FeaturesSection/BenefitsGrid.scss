@@ -56,11 +56,16 @@
 
 @media (max-width : 600px){
   .BenifitsContainer{
+   
     padding: 2rem;
+    h2{
+      margin-bottom: 1.5rem ;
+     }
     .benefits-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 20px;
+       
   }
 }
 }
