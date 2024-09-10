@@ -2,25 +2,41 @@ import React from "react";
 import "./GreenBtn.scss";
 import { useNavigate } from "react-router-dom";
 import tickIcon from "../../../assets/icons/circle-tick.svg";
+import { CircularProgress } from "@mui/material"; 
 
-const GreenBtn = ({ path, icon, text, htmlType = "button", ...props }) => {
+const GreenBtn = ({
+  path,
+  icon,
+  text,
+  htmlType = "button",
+  loading = false, 
+  ...props
+}) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    if (path) {
+    if (path && !loading) {
+     
       navigate(path);
     }
   };
 
   return (
     <button
-      className="greenBtnContainer"
+      className={`greenBtnContainer ${loading ? "loading" : ""}`} 
       onClick={handleClick}
-      type={htmlType} // Allows it to act as a submit button when needed
-      {...props} // Spread other props like `loading`, `disabled`, etc.
+      type={htmlType} 
+      disabled={loading} 
+      {...props} 
     >
-      {icon ? <img src={tickIcon} alt="tick" /> : null}
-      {text}
+      {loading ? (
+        <CircularProgress size={20} color="inherit" /> 
+      ) : (
+        <>
+          {icon ? <img src={tickIcon} alt="tick" /> : null}
+          {text}
+        </>
+      )}
     </button>
   );
 };

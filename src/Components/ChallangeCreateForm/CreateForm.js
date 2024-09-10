@@ -139,10 +139,7 @@ const CreateForm = () => {
           valuePropName="fileList"
           getValueFromEvent={(e) => e && e.fileList}
           rules={[
-            {
-              required: true,
-              message: "Please upload an image",
-            },
+            
             {
               validator: (_, value) =>
                 fileList.length > 0

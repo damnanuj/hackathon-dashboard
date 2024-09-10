@@ -1,19 +1,38 @@
 @import "../../../colors.scss";
 
-.greenBtnContainer{
-        background-color: $green-color;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 10px;
-        font-size: 17px;
-        font-weight: 400;
-        min-width: 200px;
-       
-        color: $white-background-color;
-        cursor: pointer;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
+.greenBtnContainer {
+  background-color: $green-color;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 400;
+  min-width: 200px;
+  color: $white-background-color;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background-color 0.3s ease;
+
+  // Hover state
+  &:hover {
+    background-color: darken($green-color, 10%);
+  }
+
+  // Disabled state
+  &:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+    color: rgba(255, 255, 255, 0.7); 
+  }
+
+  
+  &.loading {
+    background-color: gray; 
+    cursor: not-allowed; 
+    color: rgba(255, 255, 255, 0.7); 
+  }
 }

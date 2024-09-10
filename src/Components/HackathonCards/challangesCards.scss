@@ -1,12 +1,16 @@
 @import "../../colors.scss";
 
 .challangesCard_container {
+  position: relative;
+  // border: 1px solid red;
+  min-height: 200px;
   display: grid;
   grid-template-columns: repeat(3, 1fr); // Creates 3 equal-width columns
   gap: 20px;
   justify-content: center;
   padding-top: 3rem;
   padding-bottom: 3rem;
+  min-height: 300px;
   // Ensure the container takes the full width of its parent
   .card {
     height: 500px;
